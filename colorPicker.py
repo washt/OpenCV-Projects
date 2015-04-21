@@ -10,9 +10,11 @@ cv2.namedWindow('Image')
 cv2.createTrackbar('R','Image',0,255,nothing)
 cv2.createTrackbar('G','Image',0,255,nothing)
 cv2.createTrackbar('B','Image',0,255,nothing)
-
-switch = '0: OFF\n1 :ON'
+# Switch To reorder pixels
+switch = '0: RGB\n1: GBR'
 cv2.createTrackbar(switch,'Image',0,1,nothing)
+
+print "Starting Color Picker...Press ESC to close."
 
 while(1):
     #Show image object in 'Image' window
@@ -26,7 +28,7 @@ while(1):
     s = cv2.getTrackbarPos(switch,'Image')
 
     if s == 0:
-        image[:] = 0
+        image[:] = [r,g,b]
     else:
         image[:] = [b,g,r,]
 
