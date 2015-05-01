@@ -19,11 +19,11 @@ if __name__ == '__main__':
     cv.namedWindow('hist', 0)
     hist_scale = 10
     
-    def set_scale(val):
+    def setHistScale(num):
         global hist_scale
-        hist_scale = val
+        hist_scale = num
 
-    cv.createTrackbar('scale', 'hist', hist_scale, 100, set_scale)
+    cv.createTrackbar('scale', 'hist', hist_scale, 100, setHistScale)
 
 
     img = cv.imread('img/4.2.07.tiff',1)
@@ -40,7 +40,7 @@ if __name__ == '__main__':
         hsv[dark] = 0
         h = cv.calcHist( [hsv], [0, 1], None, [180, 256], [0, 180, 0, 256] )
 
-        #scale down the calculated histogram with current set_scale value
+        #scale down the calculated histogram with current hist_scale value
         h = np.clip(h*0.005*hist_scale, 0, 1)
         vis = hsv_map*h[:,:,np.newaxis] / 255.0
         
