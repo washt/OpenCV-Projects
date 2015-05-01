@@ -27,6 +27,8 @@ while(1):
 
     cv2.imshow('mask',mask)
     cv2.imshow('res',res)
+    
+    #close window with ESC char
     k = cv2.waitKey(5) & 0xFF
     if k == 27:
         break
