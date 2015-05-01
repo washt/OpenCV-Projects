@@ -1,13 +1,19 @@
-import cv2 as cv
 import numpy as np
+import cv2
 
-img = cv.imread('img/4.2.07.tiff')
-imgGrayscale = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+cap = cv2.VideoCapture('vtest.avi')
 
-sift = cv.SIFT()
+fgbg = cv2.createBackgroundSubtractorMOG()
 
-key_points = sift.detect(imgGrayscale,None)
+while(1):
+    ret, frame = cap.read()
 
-img = cv.drawKeypoints(imgGrayscale,key_points)
+    fgmask = fgbg.apply(frame)
 
-cv.imwrite('sift.jpg',img)
+    cv2.imshow('frame',fgmask)
+    k = cv2.waitKey(30) & 0xff
+    if k == 27:
+        break
+
+cap.release()
+cv2.destroyAllWindows()
