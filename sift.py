@@ -6,8 +6,8 @@ imgGrayscale = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
 sift = cv.SIFT()
 
-key_points = sift.detect(gray,None)
+key_points = sift.detect(imgGrayscale,None)
 
-img = cv.drawKeypoints(gray,key_points)
+img = cv.drawKeypoints(imgGrayscale,key_points)
 
 cv.imwrite('sift.jpg',img)
